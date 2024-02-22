@@ -1,5 +1,6 @@
 
 import sys
+import os
 import glob
 import importlib
 from pathlib import Path
@@ -90,9 +91,8 @@ async def Lazy_start():
     await idle()
 
 
-if __name__ == '__main__':
-    try:
-        loop.run_until_complete(Lazy_start())
-    except KeyboardInterrupt:
-        logging.info('Service Stopped Bye 👋')
+if name == 'main': 
+    port = int(os.environ.get('PORT', 5000))
+    app = Bot()
+    app.run(host='0.0.0.0', port=port)
 
